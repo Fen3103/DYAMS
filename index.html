@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DYAMS ERP · Descargar</title>
+<meta name="description" content="DYAMS ERP: caja, factura electrónica de Hacienda, inventario y personal para tu negocio en Costa Rica. Prueba gratis para los primeros 10 negocios.">
+<link rel="icon" href="icono.png">
+<meta property="og:title" content="DYAMS ERP">
+<meta property="og:description" content="Caja, facturas de Hacienda, inventario y personal en una sola computadora.">
+<meta property="og:image" content="icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Colores del logo: el azul de fondo y la franja ámbar de la D. */
+  :root {
+    --fondo: #EDF1F8;
+    --superficie: #FFFFFF;
+    --tinta: #0E1A3A;
+    --suave: #4E5B78;
+    --azul: #1E3A8A;
+    --azul-hondo: #14285E;
+    --franja: #F2A93B;
+    --franja-hondo: #D98E1F;
+    --linea: #D3DAE8;
+    --sobre-azul: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #0A1430;
+      --superficie: #111E42;
+      --tinta: #EEF2FB;
+      --suave: #A7B3CF;
+      --azul: #2A4CB0;
+      --azul-hondo: #1B347E;
+      --linea: #24356A;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--tinta);
+    font: 400 1.0625rem/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--franja); outline-offset: 3px; border-radius: 4px; }
+
+  .marco { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* Encabezado */
+  .encabezado { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
+  .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .marca img { width: 44px; height: 44px; }
+  .marca span { font: 800 1.25rem/1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.01em; }
+  .navegacion { display: flex; gap: 6px; }
+  .navegacion a { text-decoration: none; padding: 8px 12px; border-radius: 8px; color: var(--suave); font-weight: 700; }
+  .navegacion a:hover { color: var(--tinta); background: var(--superficie); }
+
+  /* Portada: la D del logo hecha de franjas; la franja ámbar es la descarga. */
+  .portada { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; padding: 48px 0 88px; }
+  h1 {
+    font: 800 clamp(2.4rem, 5.2vw, 4.1rem)/1.02 "Bricolage Grotesque", sans-serif;
+    letter-spacing: -0.03em;
+    margin: 0 0 20px;
+    max-width: 13ch;
+  }
+  .bajada { font-size: 1.2rem; color: var(--suave); max-width: 34ch; margin: 0 0 28px; }
+  .datos { color: var(--suave); font-size: 0.95rem; margin: 0; }
+  .datos strong { color: var(--tinta); }
+
+  .d { display: flex; flex-direction: column; gap: 10px; }
+  .franja {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 68px;
+    padding: 0 40px 0 24px;
+    background: var(--azul);
+    color: var(--sobre-azul);
+    border-radius: 6px 999px 999px 6px;
+    font: 700 clamp(1.05rem, 1.8vw, 1.3rem)/1.2 "Bricolage Grotesque", sans-serif;
+  }
+  .franja small { font: 400 0.92rem/1.3 "Atkinson Hyperlegible", sans-serif; opacity: 0.82; text-align: right; }
+  /* Mismas medidas que la D del logo: arriba y abajo más cortas. */
+  .franja:nth-child(1), .franja:nth-child(5) { width: 86%; }
+  .franja:nth-child(2), .franja:nth-child(4) { width: 96%; }
+  .franja:nth-child(3) { width: 100%; }
+  .franja:nth-child(odd):not(.descargar) { background: var(--azul-hondo); }
+
+  .descargar {
+    background: var(--franja);
+    color: #1B1406;
+    text-decoration: none;
+    min-height: 84px;
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    box-shadow: 0 10px 28px -12px rgba(217, 142, 31, 0.75);
+    transition: background-color 0.15s, transform 0.15s;
+  }
+  .descargar small { opacity: 0.8; }
+  .descargar:hover { background: var(--franja-hondo); transform: translateX(6px); }
+  .descargar svg { flex: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .franja { animation: entra 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .franja:nth-child(2) { animation-delay: 0.07s; }
+    .franja:nth-child(3) { animation-delay: 0.14s; }
+    .franja:nth-child(4) { animation-delay: 0.21s; }
+    .franja:nth-child(5) { animation-delay: 0.34s; }
+    @keyframes entra { from { opacity: 0; clip-path: inset(0 100% 0 0 round 6px 999px 999px 6px); } to { opacity: 1; clip-path: inset(0 0 0 0 round 6px 999px 999px 6px); } }
+  }
+
+  /* Secciones */
+  section { padding: 72px 0; border-top: 1px solid var(--linea); }
+  h2 { font: 800 clamp(1.8rem, 3.4vw, 2.5rem)/1.1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .intro { color: var(--suave); max-width: 60ch; margin: 0 0 36px; }
+
+  .pasos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; counter-reset: paso; }
+  .pasos li { counter-increment: paso; padding-top: 20px; border-top: 4px solid var(--azul); }
+  .pasos li:last-child { border-top-color: var(--franja); }
+  .pasos li::before { content: counter(paso); display: block; font: 800 2.6rem/1 "Bricolage Grotesque", sans-serif; color: var(--azul); margin-bottom: 10px; }
+  .pasos li:last-child::before { color: var(--franja-hondo); }
+  .pasos h3 { font: 700 1.25rem/1.25 "Bricolage Grotesque", sans-serif; margin: 0 0 8px; }
+  .pasos p { margin: 0; color: var(--suave); }
+
+  .aviso { margin-top: 36px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; background: var(--superficie); border: 1px solid var(--linea); border-left: 6px solid var(--franja); border-radius: 10px; padding: 20px 24px; }
+  .aviso h3 { font: 700 1.1rem/1.3 "Bricolage Grotesque", sans-serif; margin: 0 0 4px; }
+  .aviso p { margin: 0; color: var(--suave); }
+  .aviso b { color: var(--tinta); }
+
+  .dos { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .boton {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--azul); color: var(--sobre-azul);
+    text-decoration: none; font: 700 1.05rem/1 "Bricolage Grotesque", sans-serif;
+    padding: 16px 22px; border-radius: 999px;
+  }
+  .boton:hover { background: var(--azul-hondo); }
+  .celular { justify-self: center; width: 220px; aspect-ratio: 9 / 18; border-radius: 34px; background: var(--azul-hondo); padding: 12px; box-shadow: 0 24px 50px -24px rgba(14, 26, 58, 0.6); }
+  .pantalla { height: 100%; border-radius: 24px; background: var(--fondo); display: flex; flex-direction: column; gap: 8px; padding: 22px 14px; }
+  .pantalla img { width: 46px; height: 46px; align-self: center; margin-bottom: 12px; }
+  .pantalla span { height: 34px; border-radius: 4px 999px 999px 4px; background: var(--azul); }
+  .pantalla span:nth-of-type(2) { width: 88%; }
+  .pantalla span:nth-of-type(3) { width: 94%; }
+  .pantalla span:last-child { background: var(--franja); width: 80%; }
+
+  /* Oferta de prueba: los 10 lugares son franjas como las de la D. */
+  .oferta { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  .oferta .intro { margin-bottom: 20px; }
+  .oferta .intro b { color: var(--tinta); }
+  .incluye { margin: 0 0 28px; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 60ch; }
+  .incluye li { position: relative; padding-left: 30px; }
+  .incluye li::before { content: ""; position: absolute; left: 0; top: 0.45em; width: 18px; height: 10px; border-radius: 2px 999px 999px 2px; background: var(--franja); }
+  .acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .boton-franja { background: var(--franja); color: #1B1406; }
+  .boton-franja:hover { background: var(--franja-hondo); }
+  .lugares { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .lugares li {
+    display: flex; align-items: center; justify-content: space-between; gap: 6px; height: 52px; padding: 0 22px 0 18px;
+    border: 2px dashed var(--azul); border-radius: 6px 999px 999px 6px;
+    font: 800 1.3rem/1 "Bricolage Grotesque", sans-serif; color: var(--azul);
+  }
+  /* Lugar ya apartado: franja llena, como la de la D. */
+  .lugares li.ocupado { border-style: solid; border-color: var(--franja); background: var(--franja); color: #1B1406; }
+  .lugares li.ocupado::after { content: "Apartado"; font: 700 0.85rem/1 "Atkinson Hyperlegible", sans-serif; }
+  .quedan { margin: 0 0 14px; font: 700 1.15rem/1.3 "Bricolage Grotesque", sans-serif; }
+  .lleno { margin: 0; padding: 16px 20px; border-radius: 10px; background: var(--superficie); border: 1px solid var(--linea); font-weight: 700; }
+  .plataformas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .boton-claro { background: var(--superficie); color: var(--tinta); border: 2px solid var(--azul); }
+  .boton-claro:hover { background: var(--fondo); }
+  .precio-normal { margin: 32px 0 0; color: var(--suave); }
+  .precio-normal strong { color: var(--tinta); }
+  @media (prefers-color-scheme: dark) {
+    .lugares li:not(.ocupado) { border-color: #6F8BDA; color: #9DB2EC; }
+    .boton-claro { border-color: #6F8BDA; }
+  }
+
+  .actualizar { background: var(--superficie); border: 1px solid var(--linea); border-radius: 14px; padding: 28px; }
+  .actualizar p { margin: 0; color: var(--suave); max-width: 64ch; }
+
+  footer { padding: 36px 0 48px; border-top: 1px solid var(--linea); color: var(--suave); font-size: 0.95rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 860px) {
+    .portada { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 24px 0 64px; }
+    .pasos { grid-template-columns: minmax(0, 1fr); }
+    .dos { grid-template-columns: minmax(0, 1fr); }
+    .oferta { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .lugares { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .lugares li { height: 44px; padding: 0 0 0 10px; font-size: 1.05rem; }
+    .lugares li.ocupado::after { content: "✓"; padding-right: 12px; }
+    .celular { width: 180px; }
+    .navegacion a:nth-child(2) { display: none; }
+  }
+  @media (max-width: 520px) {
+    .marco { padding: 0 16px; }
+    .franja { padding: 0 28px 0 16px; min-height: 60px; }
+    .franja small { display: none; }
+    .descargar small { display: block; }
+    .aviso { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="marco">
+  <header class="encabezado">
+    <a class="marca" href="./" aria-label="DYAMS ERP, inicio">
+      <img src="logo.svg" alt="" width="44" height="44">
+      <span>DYAMS ERP</span>
+    </a>
+    <nav class="navegacion" aria-label="Secciones">
+      <a href="#prueba">Prueba gratis</a>
+      <a href="#instalar">Cómo instalar</a>
+      <a href="#celular">Celular</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="portada">
+      <div>
+        <h1>Todo tu negocio en una sola computadora</h1>
+        <p class="bajada">Cobra, factura a Hacienda, lleva el inventario y el horario de tu personal. Funciona aunque se vaya el internet.</p>
+        <p class="datos"><a href="#prueba"><strong>Prueba gratis</strong></a> para Windows 10 y 11 (64 bits). Versión <strong>2.0.0</strong>, 57 MB.</p>
+      </div>
+
+      <div class="d">
+        <div class="franja">Cobra en la caja <small>efectivo, tarjeta y SINPE</small></div>
+        <div class="franja">Factura electrónica <small>versión 4.4 de Hacienda</small></div>
+        <div class="franja">Inventario con CABYS <small>avisa lo que se acaba</small></div>
+        <div class="franja">Personal con su PIN <small>entrada, salida y horas extra</small></div>
+        <a class="franja descargar" href="https://github.com/Fen3103/DYAMS/releases/latest/download/DYAMS-ERP-Setup.exe">
+          Descargar para Windows
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M5 20h14"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <section id="prueba" aria-labelledby="titulo-prueba">
+      <div class="oferta">
+        <div>
+          <h2 id="titulo-prueba">Prueba gratis para los primeros 10 negocios</h2>
+          <p class="intro">Esta es la versión de prueba de DYAMS. Los primeros 10 negocios que se sumen la usan <b>3 meses gratis</b> y después pagan <b>₡7 500 al mes durante un año</b>, en vez de ₡11 900. Si pagas el año completo (₡90 000), te llevas de regalo <b>una impresora portátil de tiquetes o la página web de tu negocio</b>.</p>
+          <ul class="incluye">
+            <li>Al apartar tu lugar te damos tu código de activación: sin él, DYAMS no abre.</li>
+            <li>Te lo instalamos y te enseñamos a usarlo.</li>
+            <li>Pasamos tus productos y clientes del cuaderno o del sistema que usas ahora.</li>
+            <li>Sin tarjeta y sin contrato: si no te sirve, lo dejas sin multa.</li>
+            <li>A cambio, tu opinión sincera y permiso para que otro negocio te llame a preguntar cómo te va.</li>
+          </ul>
+          <div class="acciones" id="apartar">
+            <a class="boton boton-franja" href="https://wa.me/50684371131?text=Hola%2C%20quiero%20uno%20de%20los%2010%20lugares%20de%20la%20prueba%20gratis%20de%20DYAMS">Apartar mi lugar por WhatsApp</a>
+            <p class="datos">O llama al <a href="tel:+50664578169">6457 8169</a> o al <a href="tel:+50640822189">4082 2189</a>.<br>El precio de ₡7 500 sigue hasta que se llenen los 10 lugares.</p>
+          </div>
+          <p class="lleno" id="lleno" hidden>Ya se llenaron los 10 lugares. Gracias a los negocios que nos ayudaron a probar DYAMS.</p>
+        </div>
+        <div>
+          <p class="quedan" id="quedan">Quedan <strong>10 de 10</strong> lugares</p>
+          <ol class="lugares" id="lugares" aria-label="Lugares de la prueba">
+            <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li>
+            <li>6</li><li>7</li><li>8</li><li>9</li><li>10</li>
+          </ol>
+        </div>
+      </div>
+      <p class="precio-normal">Después de la oferta: <strong>₡11 900 al mes</strong> o <strong>₡119 000 al año</strong> (dos meses gratis). IVA incluido.</p>
+    </section>
+
+    <section id="instalar" aria-labelledby="titulo-instalar">
+      <h2 id="titulo-instalar">Cómo instalarlo</h2>
+      <p class="intro">Tarda unos dos minutos. No necesitas saber de computadoras.</p>
+      <ol class="pasos">
+        <li>
+          <h3>Descarga el instalador</h3>
+          <p>Toca «Descargar para Windows». Se guarda en la carpeta Descargas como DYAMS-ERP-Setup.</p>
+        </li>
+        <li>
+          <h3>Ábrelo y toca Instalar</h3>
+          <p>Deja marcado el acceso directo en el escritorio y sigue los pasos hasta el final.</p>
+        </li>
+        <li>
+          <h3>Activa y crea tu negocio</h3>
+          <p>Escribe el código de activación que te damos por WhatsApp. Después pon el nombre del negocio, tu correo, una contraseña y tu PIN de 4 números.</p>
+        </li>
+      </ol>
+
+      <div class="aviso" role="note">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--franja-hondo)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>
+        <div>
+          <h3>Si Windows dice «Windows protegió su PC»</h3>
+          <p>Es normal con programas nuevos que todavía no tienen firma digital. Toca <b>Más información</b> y después <b>Ejecutar de todas formas</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-actualizar">
+      <div class="actualizar">
+        <h2 id="titulo-actualizar">¿Ya tienes DYAMS?</h2>
+        <p>Descarga e instala igual, con el programa cerrado. El instalador reemplaza la versión anterior y tus ventas, clientes, facturas y configuración se quedan como estaban.</p>
+      </div>
+    </section>
+
+    <section id="celular" aria-labelledby="titulo-celular">
+      <div class="dos">
+        <div>
+          <h2 id="titulo-celular">El celular trabaja con tu computadora</h2>
+          <p class="intro">DYAMS Móvil no es otra app: es una caja más de tu DYAMS. Usa los mismos productos, precios, clientes y PIN del personal que tienes en la computadora, y todo lo que vende queda en la misma caja. Se conecta por el wifi del negocio, así que primero instala DYAMS en la computadora.</p>
+          <div class="plataformas">
+            <a class="boton" href="https://github.com/Fen3103/Silex-movil-apk/releases/download/movil-ultima/DYAMS-Movil.apk">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+              Descargar para Android
+            </a>
+            <a class="boton boton-claro" href="https://wa.me/50684371131?text=Hola%2C%20quiero%20instalar%20DYAMS%20M%C3%B3vil%20en%20un%20iPhone">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4"/></svg>
+              Pedirla para iPhone
+            </a>
+          </div>
+          <p class="datos" style="margin-top:14px"><b>Android:</b> al abrirlo, permite «instalar apps de origen desconocido».<br><b>iPhone:</b> todavía no está en la App Store; escríbenos y te la instalamos.<br>Después vincula el celular desde la computadora en Configuración, Puntos de venta, Celulares.</p>
+        </div>
+        <div class="celular" aria-hidden="true">
+          <div class="pantalla">
+            <img src="logo.svg" alt="">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>DYAMS ERP es un programa de IRONLEAF SOFTWARE.</span>
+    <span>WhatsApp <a href="https://wa.me/50684371131">8437 1131</a> · Llamadas <a href="tel:+50664578169">6457 8169</a> y <a href="tel:+50640822189">4082 2189</a></span>
+    <span>Hecho en Costa Rica.</span>
+  </footer>
+</div>
+<script>
+  // Los lugares apartados se cambian en cupos.json (un número del 0 al 10), sin tocar esta página.
+  (async () => {
+    let ocupados = 0;
+    try {
+      const respuesta = await fetch('cupos.json', { cache: 'no-store' });
+      if (respuesta.ok) ocupados = Number((await respuesta.json()).ocupados) || 0;
+    } catch { return; }
+    ocupados = Math.max(0, Math.min(10, Math.floor(ocupados)));
+    document.querySelectorAll('#lugares li').forEach((lugar, i) => {
+      const apartado = i < ocupados;
+      lugar.classList.toggle('ocupado', apartado);
+      lugar.setAttribute('aria-label', `Lugar ${i + 1}: ${apartado ? 'apartado' : 'disponible'}`);
+    });
+    const quedan = 10 - ocupados;
+    document.getElementById('quedan').innerHTML = quedan === 0
+      ? 'No quedan lugares'
+      : `Queda${quedan === 1 ? '' : 'n'} <strong>${quedan} de 10</strong> lugar${quedan === 1 ? '' : 'es'}`;
+    document.getElementById('apartar').hidden = quedan === 0;
+    document.getElementById('lleno').hidden = quedan !== 0;
+  })();
+</script>
+</body>
+</html>
