@@ -250,7 +250,23 @@
   footer.banda { padding-top: 40px; }
   footer.banda a { color: #FFD28A; }
 
+  /* Apartados: se ve uno a la vez; el menú de arriba cambia entre ellos. */
+  .navegacion a[aria-current="page"] { color: var(--tinta); background: var(--superficie); box-shadow: inset 0 -3px 0 var(--franja); }
+  .actualizar { margin-top: 48px; }
+  .con-apartados .apartado:not(.activo) { display: none; }
+  .con-apartados section.apartado { border-top: 0; padding-top: 40px; }
+  .con-apartados section.portada { padding-top: 24px; border-top: 0; }
+  .con-apartados main { min-height: calc(100vh - 260px); }
+  @media (prefers-reduced-motion: no-preference) {
+    .con-apartados .apartado.activo { animation: entra 0.25s ease-out; }
+    @keyframes entra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .con-apartados .portada.activo { animation: none; }
+  }
+
   @media (max-width: 860px) {
+    .encabezado { flex-direction: column; align-items: stretch; gap: 12px; padding-bottom: 8px; }
+    .navegacion { display: grid; grid-template-columns: auto auto auto auto; justify-content: space-between; gap: 2px; }
+    .navegacion a { padding: 8px 9px; font-size: 0.97rem; }
     .portada { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 24px 0 64px; }
     .pasos { grid-template-columns: minmax(0, 1fr); }
     .dos { grid-template-columns: minmax(0, 1fr); }
@@ -260,12 +276,10 @@
     .lugares li::before { display: none; }
     .lugares li.ocupado::after { content: "✓"; padding-right: 12px; }
     .celular { width: 180px; }
-    .navegacion a:nth-child(2) { display: none; }
   }
   @media (max-width: 520px) {
     .marco { padding: 0 16px; }
     .aviso { grid-template-columns: minmax(0, 1fr); }
-    .navegacion a:nth-child(1) { display: none; }
   }
 </style>
 </head>
@@ -277,14 +291,15 @@
       <span>DYAMS ERP</span>
     </a>
     <nav class="navegacion" aria-label="Secciones">
+      <a href="#inicio">Inicio</a>
       <a href="#prueba">Prueba gratis</a>
-      <a href="#instalar">Cómo instalar</a>
+      <a href="#instalar">Instalar</a>
       <a href="#celular">Celular</a>
     </nav>
   </header>
 
   <main>
-    <div class="portada">
+    <section id="inicio" class="apartado portada" aria-label="Inicio">
       <div>
         <h1>Todo tu negocio en una sola computadora</h1>
         <p class="bajada">Cobra, factura a Hacienda, lleva el inventario y el horario de tu personal. Funciona aunque se vaya el internet.</p>
@@ -314,9 +329,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <section id="prueba" class="banda" aria-labelledby="titulo-prueba">
+    <section id="prueba" class="apartado banda" aria-labelledby="titulo-prueba">
       <div class="oferta">
         <div>
           <h2 id="titulo-prueba">Prueba gratis para los primeros 10 negocios</h2>
@@ -345,7 +360,7 @@
       <p class="precio-normal">Después de la oferta: <strong>₡11 900 al mes</strong> o <strong>₡119 000 al año</strong> (dos meses gratis). IVA incluido.</p>
     </section>
 
-    <section id="instalar" aria-labelledby="titulo-instalar">
+    <section id="instalar" class="apartado" aria-labelledby="titulo-instalar">
       <h2 id="titulo-instalar">Cómo instalarlo</h2>
       <p class="intro">Tarda unos dos minutos. No necesitas saber de computadoras.</p>
       <ol class="pasos">
@@ -370,16 +385,14 @@
           <p>Es normal con programas nuevos que todavía no tienen firma digital. Toca <b>Más información</b> y después <b>Ejecutar de todas formas</b>.</p>
         </div>
       </div>
-    </section>
 
-    <section aria-labelledby="titulo-actualizar">
       <div class="actualizar">
         <h2 id="titulo-actualizar">¿Ya tienes DYAMS?</h2>
         <p>Descarga e instala igual, con el programa cerrado. El instalador reemplaza la versión anterior y tus ventas, clientes, facturas y configuración se quedan como estaban.</p>
       </div>
     </section>
 
-    <section id="celular" aria-labelledby="titulo-celular">
+    <section id="celular" class="apartado" aria-labelledby="titulo-celular">
       <div class="dos">
         <div>
           <h2 id="titulo-celular">El celular trabaja con tu computadora</h2>
@@ -459,6 +472,23 @@
       ventana.close();
       location.href = instalador;
     });
+  })();
+
+  // Apartados: se muestra solo el de la dirección (#prueba, #instalar…); sin nada, el inicio.
+  (() => {
+    const apartados = [...document.querySelectorAll('.apartado')];
+    const enlaces = [...document.querySelectorAll('.navegacion a')];
+    document.documentElement.classList.add('con-apartados');
+    const mostrar = (desplazar) => {
+      const id = location.hash.slice(1);
+      const actual = apartados.find((a) => a.id === id) ?? apartados[0];
+      apartados.forEach((a) => a.classList.toggle('activo', a === actual));
+      enlaces.forEach((e) => e.hash === '#' + actual.id ? e.setAttribute('aria-current', 'page') : e.removeAttribute('aria-current'));
+      document.title = actual.id === 'inicio' ? 'DYAMS ERP · Descargar' : `${enlaces.find((e) => e.hash === '#' + actual.id)?.textContent ?? ''} · DYAMS ERP`;
+      if (desplazar) window.scrollTo({ top: 0 });
+    };
+    window.addEventListener('hashchange', () => mostrar(true));
+    mostrar(false);
   })();
 
   // Los lugares apartados se cambian en cupos.json (un número del 0 al 10), sin tocar esta página.
