@@ -244,7 +244,8 @@
   .actualizar { margin-top: 48px; }
   .con-apartados .apartado:not(.activo) { display: none; }
   .con-apartados section.apartado { border-top: 0; padding-top: 40px; }
-  .con-apartados section.portada { padding-top: 24px; border-top: 0; }
+  .con-apartados #inicio { padding-top: 0; }
+  .con-apartados #inicio .portada { padding-top: 24px; }
   .con-apartados main { min-height: calc(100vh - 260px); }
   @media (prefers-reduced-motion: no-preference) {
     .con-apartados .apartado.activo { animation: entra 0.25s ease-out; }
@@ -252,7 +253,15 @@
     .con-apartados .portada.activo { animation: none; }
   }
 
+  .pantallas { padding: 8px 0 64px; }
+  .pantallas-grilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .pantallas figure { margin: 0; }
+  .pantallas img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--superficie); box-shadow: 0 0 0 1px var(--linea), 0 24px 44px -26px rgba(14, 26, 58, 0.55); }
+  .pantallas figcaption { margin-top: 12px; color: var(--suave); }
+  .pantallas figcaption b { color: var(--tinta); }
+
   @media (max-width: 860px) {
+    .pantallas-grilla { grid-template-columns: minmax(0, 1fr); }
     .encabezado { flex-direction: column; align-items: stretch; gap: 12px; padding-bottom: 8px; }
     .navegacion { display: grid; grid-template-columns: auto auto auto auto; justify-content: space-between; gap: 2px; }
     .navegacion a { padding: 8px 9px; font-size: 0.97rem; }
@@ -288,7 +297,8 @@
   </header>
 
   <main>
-    <section id="inicio" class="apartado portada" aria-label="Inicio">
+    <section id="inicio" class="apartado" aria-label="Inicio">
+      <div class="portada">
       <div>
         <h1>Todo tu negocio en una sola computadora</h1>
         <p class="bajada">Cobra, factura a Hacienda, lleva el inventario y el horario de tu personal. Funciona aunque se vaya el internet.</p>
@@ -316,6 +326,22 @@
             <p class="t-centro t-sello">✓ Aceptada por Hacienda</p>
             <p class="t-centro t-suave">¡Gracias por su compra!</p>
           </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="pantallas">
+        <h2>Así se ve DYAMS</h2>
+        <p class="intro">Pantallas reales del programa, con un negocio de prueba.</p>
+        <div class="pantallas-grilla">
+          <figure>
+            <img src="capturas/caja.jpg" alt="La caja de DYAMS con una venta de cinco productos y el total a cobrar" width="1440" height="756" loading="lazy">
+            <figcaption><b>La caja.</b> Escaneas o buscas el producto y cobras con efectivo, tarjeta o SINPE.</figcaption>
+          </figure>
+          <figure>
+            <img src="capturas/inventario.jpg" alt="El inventario de DYAMS con existencias, costos, precios y un producto por reponer" width="1440" height="756" loading="lazy">
+            <figcaption><b>El inventario.</b> Existencias, costo y precio de cada producto, y aviso de lo que hay que reponer.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
