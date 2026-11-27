@@ -146,17 +146,6 @@
     .boton-claro { border-color: #6F8BDA; }
   }
 
-  .ventana { width: min(440px, calc(100% - 32px)); border: 1px solid var(--linea); border-radius: 14px; padding: 28px; background: var(--superficie); color: var(--tinta); }
-  .ventana::backdrop { background: rgba(10, 20, 48, 0.55); }
-  .ventana h2 { font-size: 1.6rem; }
-  .ventana p { margin: 0 0 16px; color: var(--suave); }
-  .ventana input { width: 100%; padding: 14px 16px; border: 2px solid var(--linea); border-radius: 10px; background: var(--fondo); color: var(--tinta); font: 700 1.3rem/1 "Bricolage Grotesque", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
-  .ventana input:focus { border-color: var(--franja); outline: none; }
-  .ventana .error { color: #C0392B; font-weight: 700; }
-  .ventana-botones { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
-  .ventana .boton { border: 0; cursor: pointer; }
-  .ventana .boton-claro { border: 2px solid var(--azul); }
-  @media (prefers-color-scheme: dark) { .ventana .error { color: #FF8A80; } }
 
   .actualizar { background: var(--superficie); border: 1px solid var(--linea); border-radius: 14px; padding: 28px; }
   .actualizar p { margin: 0; color: var(--suave); max-width: 64ch; }
@@ -303,7 +292,7 @@
       <div>
         <h1>Todo tu negocio en una sola computadora</h1>
         <p class="bajada">Cobra, factura a Hacienda, lleva el inventario y el horario de tu personal. Funciona aunque se vaya el internet.</p>
-        <a class="boton-descargar" href="#descargar" id="abrir-descarga">Descargar para Windows <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M5 20h14"/></svg></a>
+        <a class="boton-descargar" href="https://github.com/Fen3103/DYAMS/releases/latest/download/DYAMS-ERP-Setup.exe">Descargar para Windows <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M5 20h14"/></svg></a>
         <p class="datos"><a href="#prueba"><strong>Prueba gratis</strong></a> para Windows 10 y 11 (64 bits). Versión <strong>2.0.0</strong>, 57 MB.</p>
       </div>
 
@@ -366,7 +355,7 @@
       <ol class="pasos">
         <li>
           <h3>Descarga el instalador</h3>
-          <p>Toca «Descargar para Windows» y escribe el código de descarga que te dimos. Se guarda en la carpeta Descargas como DYAMS-ERP-Setup.</p>
+          <p>Toca «Descargar para Windows». Se guarda en la carpeta Descargas como DYAMS-ERP-Setup.</p>
         </li>
         <li>
           <h3>Ábrelo y toca Instalar</h3>
@@ -402,12 +391,12 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
               Descargar para Android
             </a>
-            <a class="boton boton-claro" href="https://github.com/Fen3103/Dyams-Movil/releases/download/iphone-ultima/DYAMS-Movil.ipa">
+            <a class="boton boton-claro" href="https://wa.me/50684371131?text=Hola%2C%20quiero%20instalar%20DYAMS%20M%C3%B3vil%20en%20un%20iPhone">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4"/></svg>
-              Descargar para iPhone
+              Pedirla para iPhone
             </a>
           </div>
-          <p class="datos" style="margin-top:14px"><b>Android:</b> al abrirlo, permite «instalar apps de origen desconocido».<br><b>iPhone:</b> todavía no está en la App Store; el archivo se instala desde la computadora con Sideloadly o AltStore. Si prefieres, <a href="https://wa.me/50684371131?text=Hola%2C%20quiero%20instalar%20DYAMS%20M%C3%B3vil%20en%20un%20iPhone">escríbenos y te la instalamos</a>.<br>Después vincula el celular desde la computadora en Configuración, Puntos de venta, Celulares.</p>
+          <p class="datos" style="margin-top:14px"><b>Android:</b> al abrirlo, permite «instalar apps de origen desconocido».<br><b>iPhone:</b> todavía no está en la App Store, así que te la instalamos nosotros: escríbenos y te la dejamos lista.<br>Después vincula el celular desde la computadora en Configuración, Puntos de venta, Celulares.</p>
         </div>
         <div class="celular" aria-hidden="true">
           <div class="pantalla">
@@ -428,52 +417,7 @@
     <span>Hecho en Costa Rica.</span>
   </footer>
 </div>
-<dialog class="ventana" id="descargar" aria-labelledby="titulo-descargar">
-  <form id="form-descarga">
-    <h2 id="titulo-descargar">Código de descarga</h2>
-    <p>Escribe el código que te dimos por WhatsApp para bajar DYAMS.</p>
-    <input id="codigo-descarga" name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="DYAMS-XXXX" aria-describedby="error-descarga" required>
-    <p class="error" id="error-descarga" role="alert" hidden>Ese código no es el correcto. Revísalo o pídelo por WhatsApp.</p>
-    <p class="datos">¿No lo tienes? <a href="https://wa.me/50684371131?text=Hola%2C%20quiero%20el%20c%C3%B3digo%20para%20descargar%20DYAMS">Pídelo por WhatsApp</a>.</p>
-    <div class="ventana-botones">
-      <button type="button" class="boton boton-claro" id="cerrar-descarga">Cancelar</button>
-      <button type="submit" class="boton boton-franja">Descargar</button>
-    </div>
-  </form>
-</dialog>
 <script>
-  // Código de descarga: solo se guarda su huella (SHA-256), no el código.
-  (() => {
-    const huella = '234af153892b0c123fbd63fe984157cd9db90faab2be1089c2c3b0d9f8290604';
-    const instalador = 'https://github.com/Fen3103/DYAMS/releases/latest/download/DYAMS-ERP-Setup.exe';
-    const ventana = document.getElementById('descargar');
-    const campo = document.getElementById('codigo-descarga');
-    const error = document.getElementById('error-descarga');
-    document.getElementById('abrir-descarga').addEventListener('click', (evento) => {
-      evento.preventDefault();
-      error.hidden = true;
-      campo.value = '';
-      ventana.showModal();
-      campo.focus();
-    });
-    document.getElementById('cerrar-descarga').addEventListener('click', () => ventana.close());
-    document.getElementById('form-descarga').addEventListener('submit', async (evento) => {
-      evento.preventDefault();
-      let texto = campo.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      if (texto.startsWith('DYAMS')) texto = texto.slice(5);
-      const datos = new TextEncoder().encode('DYAMS-' + texto);
-      const resumen = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', datos)))
-        .map((b) => b.toString(16).padStart(2, '0')).join('');
-      if (resumen !== huella) {
-        error.hidden = false;
-        campo.select();
-        return;
-      }
-      ventana.close();
-      location.href = instalador;
-    });
-  })();
-
   // Apartados: se muestra solo el de la dirección (#prueba, #instalar…); sin nada, el inicio.
   (() => {
     const apartados = [...document.querySelectorAll('.apartado')];
